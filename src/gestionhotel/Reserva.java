@@ -1,0 +1,100 @@
+/**
+ *
+ * @author MICHAEL NARANJO
+ */
+public class Reserva {
+
+    String nombre = "";
+    int nDocu = 0;
+    int edad = 0;
+//  int fechaReserva = 0;
+    String telefono = "";
+    int tiempoEstadia = 0;
+    int numeroPersonas = 0;
+    boolean[] diasReservados = new boolean[9];
+
+    public Reserva() {
+    }
+
+    public Reserva(String nombre, int nDocu, int edad, String telefono, int tiempoEstadia, int numeroPersonas) {
+        this.nombre = nombre;
+        this.nDocu = nDocu;
+        this.edad = edad;
+//        this.fechaReserva = fechaReserva;
+        this.telefono = telefono;
+        this.tiempoEstadia = tiempoEstadia;
+        this.numeroPersonas = numeroPersonas;
+    }
+
+    public String getNombre() {
+        return nombre;
+    }
+
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
+
+    public int getnDocu() {
+        return nDocu;
+    }
+
+    public void setnDocu(int nDocu) {
+        this.nDocu = nDocu;
+    }
+
+    public int getEdad() {
+        return edad;
+    }
+
+    public void setEdad(int edad) {
+        this.edad = edad;
+    }
+
+    public String getTelefono() {
+        return telefono;
+    }
+
+    public void setTelefono(String telefono) {
+        this.telefono = telefono;
+    }
+
+    public int getTiempoEstadia() {
+        return tiempoEstadia;
+    }
+
+    public void setTiempoEstadia(int tiempoEstadia) {
+        this.tiempoEstadia = tiempoEstadia;
+    }
+
+    public int getNumeroPersonas() {
+        return numeroPersonas;
+    }
+
+    public void setNumeroPersonas(int numeroPersonas) {
+        this.numeroPersonas = numeroPersonas;
+    }
+
+    @Override
+    public String toString() {
+        return "Reserva{\n"
+                + "a nombre de: " + nombre + "\n"
+                + "Numero de documento: " + nDocu + "\n"
+                + "Edad: " + edad + "\n"
+                + "Telefono: " + telefono + "\n"
+                + "Tiempo de Estadia: " + tiempoEstadia + "\n"
+                + "Numero de Personas=" + numeroPersonas + '}';
+    }
+
+    public boolean ReservarHabitacion(int diaInicial, int diasOcupados) {
+        int indice = diaInicial--;
+        if (diasReservados[indice] == false && diasReservados[indice + diasOcupados] == false && ((indice + diasOcupados) <= 9)) {
+            for (int i = 0; i < diasOcupados; diaInicial++) {
+                diasReservados[indice] = true;
+                indice++;
+            }
+            return true;
+        } else {
+            return false;
+        }
+    }
+}
