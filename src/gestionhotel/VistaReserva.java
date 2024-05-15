@@ -4,12 +4,23 @@
  */
 package gestionhotel;
 
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author USER
  */
 public class VistaReserva extends javax.swing.JFrame {
-
+    Reserva nuevaReserva = new Reserva();
+        
+        String nombre = "";
+        int nDocu = 0;
+        int edad = 0;
+//      int fechaReserva = 0;
+        String telefono = "";
+        int tiempoEstadia = 0;
+        int numeroPersonas = 0;
+        int diaInicial=0;
     /**
      * Creates new form VistaReserva
      */
@@ -43,10 +54,10 @@ public class VistaReserva extends javax.swing.JFrame {
         TxtEdad = new javax.swing.JTextField();
         EstadiaCbox = new javax.swing.JComboBox<>();
         NumPerCbox = new javax.swing.JComboBox<>();
-        jButton1 = new javax.swing.JButton();
+        BtnSiguiente = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setPreferredSize(new java.awt.Dimension(674, 509));
+        setPreferredSize(new java.awt.Dimension(674, 700));
         setResizable(false);
 
         lbTitulo.setFont(new java.awt.Font("Segoe Print", 1, 24)); // NOI18N
@@ -108,9 +119,14 @@ public class VistaReserva extends javax.swing.JFrame {
 
         NumPerCbox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "1", "2", "3" }));
 
-        jButton1.setBackground(new java.awt.Color(153, 204, 255));
-        jButton1.setFont(new java.awt.Font("Sitka Text", 0, 14)); // NOI18N
-        jButton1.setText("Siguiente");
+        BtnSiguiente.setBackground(new java.awt.Color(153, 204, 255));
+        BtnSiguiente.setFont(new java.awt.Font("Sitka Text", 0, 14)); // NOI18N
+        BtnSiguiente.setText("Siguiente");
+        BtnSiguiente.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnSiguienteActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -137,7 +153,7 @@ public class VistaReserva extends javax.swing.JFrame {
                                 .addComponent(TxtEdad, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(LbDatos6)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(EstadiaCbox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(LbDatos7)
@@ -160,7 +176,7 @@ public class VistaReserva extends javax.swing.JFrame {
                 .addContainerGap())
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(jButton1)
+                .addComponent(BtnSiguiente)
                 .addGap(84, 84, 84))
         );
         layout.setVerticalGroup(
@@ -204,7 +220,7 @@ public class VistaReserva extends javax.swing.JFrame {
                     .addComponent(LbDatos7)
                     .addComponent(NumPerCbox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 17, Short.MAX_VALUE)
-                .addComponent(jButton1)
+                .addComponent(BtnSiguiente)
                 .addGap(40, 40, 40))
         );
 
@@ -212,7 +228,7 @@ public class VistaReserva extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void TxtNomActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TxtNomActionPerformed
-        // TODO add your handling code here:
+        
     }//GEN-LAST:event_TxtNomActionPerformed
 
     private void TxtNumDocActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TxtNumDocActionPerformed
@@ -226,6 +242,22 @@ public class VistaReserva extends javax.swing.JFrame {
     private void TxtEdadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TxtEdadActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_TxtEdadActionPerformed
+
+    private void BtnSiguienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnSiguienteActionPerformed
+        nombre = TxtNom.getText();
+        nDocu = Integer.parseInt(TxtNumDoc.getText());
+        edad = Integer.parseInt(TxtEdad.getText());
+        telefono =TxtTele.getText();
+        tiempoEstadia = (EstadiaCbox.getSelectedIndex())+1;
+        numeroPersonas = (NumPerCbox.getSelectedIndex())+1;
+        diaInicial=(FechaCbox.getSelectedIndex())+1;
+        if (nuevaReserva.ReservarHabitacion(diaInicial, tiempoEstadia)) {
+            nuevaReserva = new Reserva(nombre, nDocu, edad, telefono, tiempoEstadia, numeroPersonas);
+            JOptionPane.showMessageDialog(null, nuevaReserva);
+        } else {
+            JOptionPane.showMessageDialog(null, "No se ha podido realizar la reserva");
+        }        
+    }//GEN-LAST:event_BtnSiguienteActionPerformed
 
     /**
      * @param args the command line arguments
@@ -263,6 +295,7 @@ public class VistaReserva extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton BtnSiguiente;
     private javax.swing.JComboBox<String> EstadiaCbox;
     private javax.swing.JComboBox<String> FechaCbox;
     private javax.swing.JLabel Icono;
@@ -279,7 +312,6 @@ public class VistaReserva extends javax.swing.JFrame {
     private javax.swing.JTextField TxtNom;
     private javax.swing.JTextField TxtNumDoc;
     private javax.swing.JTextField TxtTele;
-    private javax.swing.JButton jButton1;
     private javax.swing.JLabel lbTitulo;
     // End of variables declaration//GEN-END:variables
 }

@@ -1,3 +1,7 @@
+package gestionhotel;
+
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author MICHAEL NARANJO
@@ -11,7 +15,7 @@ public class Reserva {
     String telefono = "";
     int tiempoEstadia = 0;
     int numeroPersonas = 0;
-    boolean[] diasReservados = new boolean[9];
+    boolean[] diasReservados = new boolean[10];
 
     public Reserva() {
     }
@@ -76,22 +80,27 @@ public class Reserva {
 
     @Override
     public String toString() {
-        return "Reserva{\n"
+        return "Reserva\n"
                 + "a nombre de: " + nombre + "\n"
                 + "Numero de documento: " + nDocu + "\n"
                 + "Edad: " + edad + "\n"
                 + "Telefono: " + telefono + "\n"
                 + "Tiempo de Estadia: " + tiempoEstadia + "\n"
-                + "Numero de Personas=" + numeroPersonas + '}';
+                + "Numero de Personas=" + numeroPersonas ;
     }
 
     public boolean ReservarHabitacion(int diaInicial, int diasOcupados) {
-        int indice = diaInicial--;
-        if (diasReservados[indice] == false && diasReservados[indice + diasOcupados] == false && ((indice + diasOcupados) <= 9)) {
-            for (int i = 0; i < diasOcupados; diaInicial++) {
+        int indice = diaInicial-1;
+        if (diasReservados[indice] == false && diasReservados[indice + (diasOcupados-1)] == false && ((indice + (diasOcupados-1)) <= 10)) {
+            for (int i = 0; i < diasOcupados; i++) {
+                JOptionPane.showMessageDialog(null, "indice="+indice);
                 diasReservados[indice] = true;
                 indice++;
             }
+            String dias="";
+            for (boolean diasReservado : diasReservados) {
+                dias+=diasReservado+"\n";
+            }JOptionPane.showMessageDialog(null, dias);
             return true;
         } else {
             return false;
