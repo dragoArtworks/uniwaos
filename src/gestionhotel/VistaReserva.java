@@ -257,6 +257,15 @@ public class VistaReserva extends javax.swing.JFrame {
         } else {
             JOptionPane.showMessageDialog(null, "No se ha podido realizar la reserva");
         }        
+       if(numeroPersonas==1){
+           VistaHabiPer1 habiPer1 = new VistaHabiPer1();
+           habiPer1.setVisible(true);
+           this.dispose();
+       }else{
+           VistaHabi2Per habi2Per = new VistaHabi2Per();
+           habi2Per.setVisible(true);
+           this.dispose();
+       }
     }//GEN-LAST:event_BtnSiguienteActionPerformed
 
     /**
