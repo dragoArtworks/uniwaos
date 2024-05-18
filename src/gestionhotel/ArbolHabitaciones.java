@@ -39,6 +39,12 @@ public class ArbolHabitaciones {
         }
         return raiz;
     }
+    public boolean isEmpty(){
+        if (this.raiz==null) {
+            return true;
+        }
+        return false;
+    }
 
     public void printInOrder() {
         System.out.println("Recorrido en orden del árbol:");
@@ -116,7 +122,7 @@ public class ArbolHabitaciones {
             if (node.right != null && node.right.nHabitacion.isDisponibilidad()) {
                 JOptionPane.showMessageDialog(null, " se puede cambiar");
                 int index = node.nHabitacion.getNumHabitacion();
-                indice = index + 1;//condicion de verificacion
+                indice = index ;//condicion de verificacion
             }
             dispHabitacionesEspeciales(node.left);
         }
@@ -127,7 +133,6 @@ public class ArbolHabitaciones {
     //encontrar una habitacion especifica
     public void habitacionesNormalesEnc(int indice) {
         habitacionesNormalesEnc(raiz, indice);
-        printInOrder();
     }
 
     //nodos izquierdos

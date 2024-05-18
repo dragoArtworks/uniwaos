@@ -275,12 +275,9 @@ public class VistaReserva extends javax.swing.JFrame {
         tipoHabitacion=HabComboBox.getSelectedIndex();
         if (nuevaReserva.ReservarHabitacion(diaInicial, tiempoEstadia)) {
             if(tipoHabitacion==0){
-                JOptionPane.showMessageDialog(null, "existe");
-                JOptionPane.showMessageDialog(null, " indice =   "+arbol.dispHabitacionesNormales());
-                if(arbol.dispHabitacionesNormales()>=1){
-                    JOptionPane.showMessageDialog(null, "existe---------");
+                if(arbol.dispHabitacionesNormales()>=0){
                     nuevaReserva = new Reserva(nombre, nDocu, edad, telefono, tiempoEstadia, numeroPersonas,arbol.dispHabitacionesEspeciales());
-                    int index=arbol.dispHabitacionesEspeciales();
+                    int index=arbol.dispHabitacionesNormales();
                     arbol.habitacionesNormalesEnc(index);
                     arbol.printInOrder();
                 }
@@ -297,15 +294,16 @@ public class VistaReserva extends javax.swing.JFrame {
         } else {
             JOptionPane.showMessageDialog(null, "No se ha podido realizar la reserva");
         }        
-       if(numeroPersonas==1){
+       if(numeroPersonas>=0){
            VistaHabiPer1 habiPer1 = new VistaHabiPer1();
            habiPer1.setVisible(true);
            this.dispose();
-        }else{
-           VistaHabi2Per habi2Per = new VistaHabi2Per();
-           habi2Per.setVisible(true);
-           this.dispose();
-        }
+       }
+//        else{
+//           VistaHabi2Per habi2Per = new VistaHabi2Per();
+//           habi2Per.setVisible(true);
+//           this.dispose();
+//        }
     }//GEN-LAST:event_BtnSiguienteActionPerformed
 
     private void HabComboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_HabComboBoxActionPerformed

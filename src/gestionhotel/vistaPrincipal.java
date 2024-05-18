@@ -19,7 +19,8 @@ public class vistaPrincipal extends javax.swing.JFrame {
     }
     public vistaPrincipal() {
         initComponents();
-        for (int i=0;i<4;i++) {
+        if(arbol.isEmpty()){
+           for (int i=0;i<4;i++) {
             Habitacion habitacionNormal = new Habitacion(false);
             habitacionNormal=new Habitacion(i+2);
             arbol.insertar(habitacionNormal);
@@ -31,7 +32,9 @@ public class vistaPrincipal extends javax.swing.JFrame {
             habitacionEspecial =new Habitacion(i);
             habitacionEspecial.setEsEspecial(true);
             arbol.insertar(habitacionEspecial);
+        } 
         }
+        
     }
 
     /**
