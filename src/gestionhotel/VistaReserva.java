@@ -11,8 +11,16 @@ import javax.swing.JOptionPane;
  * @author USER
  */
 public class VistaReserva extends javax.swing.JFrame {
+    Habitacion nueHabitacion1=new Habitacion(true);
+    Habitacion nueHabitacion2=new Habitacion(true);
+    Habitacion nueHabitacion3=new Habitacion(false);
+    Habitacion nueHabitacion4=new Habitacion(false);
+    Habitacion nueHabitacion5=new Habitacion(false);
+    Habitacion nueHabitacion6=new Habitacion(false);
+    
     Reserva nuevaReserva = new Reserva();
-        
+    
+        int tipoHabitacion=0; //////////////////////////////////////////////////////////////
         String nombre = "";
         int nDocu = 0;
         int edad = 0;
@@ -55,6 +63,8 @@ public class VistaReserva extends javax.swing.JFrame {
         EstadiaCbox = new javax.swing.JComboBox<>();
         NumPerCbox = new javax.swing.JComboBox<>();
         BtnSiguiente = new javax.swing.JButton();
+        LbDatos8 = new javax.swing.JLabel();
+        HabComboBox = new javax.swing.JComboBox<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setPreferredSize(new java.awt.Dimension(674, 700));
@@ -128,6 +138,16 @@ public class VistaReserva extends javax.swing.JFrame {
             }
         });
 
+        LbDatos8.setFont(new java.awt.Font("Sitka Text", 0, 14)); // NOI18N
+        LbDatos8.setText("Tipo de habitacion:");
+
+        HabComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Habitación Estandar Waos", "Habitación SuperWaos" }));
+        HabComboBox.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                HabComboBoxActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -171,8 +191,12 @@ public class VistaReserva extends javax.swing.JFrame {
                                         .addComponent(TxtTele))
                                     .addComponent(LbDatos4))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(FechaCbox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(0, 123, Short.MAX_VALUE)))
+                                .addComponent(FechaCbox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(LbDatos8)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(HabComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(0, 110, Short.MAX_VALUE)))
                 .addContainerGap())
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGap(0, 0, Short.MAX_VALUE)
@@ -212,15 +236,18 @@ public class VistaReserva extends javax.swing.JFrame {
                     .addComponent(LbDatos5)
                     .addComponent(TxtTele, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(LbDatos6)
-                    .addComponent(EstadiaCbox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(EstadiaCbox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(LbDatos6))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(LbDatos7)
                     .addComponent(NumPerCbox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 17, Short.MAX_VALUE)
-                .addComponent(BtnSiguiente)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(BtnSiguiente)
+                    .addComponent(LbDatos8)
+                    .addComponent(HabComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(40, 40, 40))
         );
 
@@ -251,8 +278,16 @@ public class VistaReserva extends javax.swing.JFrame {
         tiempoEstadia = (EstadiaCbox.getSelectedIndex())+1;
         numeroPersonas = (NumPerCbox.getSelectedIndex())+1;
         diaInicial=(FechaCbox.getSelectedIndex())+1;
+        tipoHabitacion=HabComboBox.getSelectedIndex()+1;
         if (nuevaReserva.ReservarHabitacion(diaInicial, tiempoEstadia)) {
-            nuevaReserva = new Reserva(nombre, nDocu, edad, telefono, tiempoEstadia, numeroPersonas);
+            if(tipoHabitacion==0){
+                nueHabitacion3=new Habitacion(2);
+                nuevaReserva = new Reserva(nombre, nDocu, edad, telefono, tiempoEstadia, numeroPersonas,nueHabitacion3.getNumHabitacion());
+            }else if(tipoHabitacion==1){
+                nueHabitacion1=new Habitacion(0);
+                nuevaReserva = new Reserva(nombre, nDocu, edad, telefono, tiempoEstadia, numeroPersonas,nueHabitacion1.getNumHabitacion());
+            }
+            
             JOptionPane.showMessageDialog(null, nuevaReserva);
         } else {
             JOptionPane.showMessageDialog(null, "No se ha podido realizar la reserva");
@@ -261,12 +296,16 @@ public class VistaReserva extends javax.swing.JFrame {
            VistaHabiPer1 habiPer1 = new VistaHabiPer1();
            habiPer1.setVisible(true);
            this.dispose();
-       }else{
+        }else{
            VistaHabi2Per habi2Per = new VistaHabi2Per();
            habi2Per.setVisible(true);
            this.dispose();
-       }
+        }
     }//GEN-LAST:event_BtnSiguienteActionPerformed
+
+    private void HabComboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_HabComboBoxActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_HabComboBoxActionPerformed
 
     /**
      * @param args the command line arguments
@@ -307,6 +346,7 @@ public class VistaReserva extends javax.swing.JFrame {
     private javax.swing.JButton BtnSiguiente;
     private javax.swing.JComboBox<String> EstadiaCbox;
     private javax.swing.JComboBox<String> FechaCbox;
+    private javax.swing.JComboBox<String> HabComboBox;
     private javax.swing.JLabel Icono;
     private javax.swing.JLabel LbDatos;
     private javax.swing.JLabel LbDatos1;
@@ -316,6 +356,7 @@ public class VistaReserva extends javax.swing.JFrame {
     private javax.swing.JLabel LbDatos5;
     private javax.swing.JLabel LbDatos6;
     private javax.swing.JLabel LbDatos7;
+    private javax.swing.JLabel LbDatos8;
     private javax.swing.JComboBox<String> NumPerCbox;
     private javax.swing.JTextField TxtEdad;
     private javax.swing.JTextField TxtNom;

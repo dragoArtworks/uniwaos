@@ -30,8 +30,12 @@ public class VistaHabiPer1 extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         lbTitulo = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jTextArea1 = new javax.swing.JTextArea();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        jTextArea2 = new javax.swing.JTextArea();
+        lbTitulo1 = new javax.swing.JLabel();
+        BtnVol = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -45,24 +49,29 @@ public class VistaHabiPer1 extends javax.swing.JFrame {
         jLabel3.setText("UNIWAOOS");
 
         lbTitulo.setFont(new java.awt.Font("Segoe Print", 1, 18)); // NOI18N
-        lbTitulo.setText("Habitaciones para 1 persona:");
+        lbTitulo.setText("Habitaciones Estandar");
 
-        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/gestionhotel/imagenes/icons8-cama-matrimonial-100.png"))); // NOI18N
-        jButton1.setText("Habitacion SuperWaos:");
-        jButton1.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jButton1.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
-        jButton1.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        jTextArea1.setEditable(false);
+        jTextArea1.setColumns(20);
+        jTextArea1.setRows(5);
+        jTextArea1.setText("Descubre el confort de nuestras habitaciones estándar, que ofrecen una cama \nsencilla para un descanso reparador y un baño privado para tu comodidad. Con Wi-Fi \ngratuito y servicio de habitaciones las 24 horas, disfruta de una estancia relajante \ny funcional en nuestro hotel. ¡Reserva ahora y vive una experiencia inolvidable!");
+        jScrollPane1.setViewportView(jTextArea1);
+
+        jTextArea2.setEditable(false);
+        jTextArea2.setColumns(20);
+        jTextArea2.setRows(5);
+        jTextArea2.setText("Explora la exclusividad de nuestras habitaciones VIP, como la lujosa \"Superwaos\", \ndonde una cama king-size y un baño privado de lujo te brindan un oasis de confort y\nelegancia. Disfruta de servicios de primera clase, como Wi-Fi de alta velocidad, \ntelevisión de pantalla plana y un minibar surtido. Con un diseño sofisticado y atención\n personalizada las 24 horas, la habitación \"Superwaos\" garantiza una experiencia de\n alojamiento inolvidable. ¡Reserva ahora y vive el lujo en su máxima expresión!");
+        jScrollPane2.setViewportView(jTextArea2);
+
+        lbTitulo1.setFont(new java.awt.Font("Segoe Print", 1, 18)); // NOI18N
+        lbTitulo1.setText("Habitaciones SuperWaos");
+
+        BtnVol.setText("Volver");
+        BtnVol.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                BtnVolActionPerformed(evt);
             }
         });
-
-        jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/gestionhotel/imagenes/icons8-cama-matrimonial-100.png"))); // NOI18N
-        jButton2.setText("Habitacion EstandarWaos:");
-        jButton2.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jButton2.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
-        jButton2.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -71,6 +80,10 @@ public class VistaHabiPer1 extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGap(39, 39, 39)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(BtnVol)
+                        .addGap(52, 52, 52))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
@@ -84,11 +97,11 @@ public class VistaHabiPer1 extends javax.swing.JFrame {
                                 .addGap(0, 0, Short.MAX_VALUE)))
                         .addContainerGap())
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(67, 67, 67)
-                        .addComponent(jButton2)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jButton1)
-                        .addGap(133, 133, 133))))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 474, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(lbTitulo1)
+                            .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 474, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -104,21 +117,26 @@ public class VistaHabiPer1 extends javax.swing.JFrame {
                         .addGap(24, 24, 24)
                         .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(21, 21, 21)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(lbTitulo)
-                        .addGap(100, 100, 100)
-                        .addComponent(jButton2))
-                    .addComponent(jButton1))
-                .addContainerGap(113, Short.MAX_VALUE))
+                .addComponent(lbTitulo)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 45, Short.MAX_VALUE)
+                .addComponent(lbTitulo1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(28, 28, 28)
+                .addComponent(BtnVol)
+                .addGap(61, 61, 61))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton1ActionPerformed
+    private void BtnVolActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnVolActionPerformed
+            vistaPrincipal pagPrin=new vistaPrincipal();
+            pagPrin.setVisible(true);
+            this.dispose();
+    }//GEN-LAST:event_BtnVolActionPerformed
 
     /**
      * @param args the command line arguments
@@ -146,6 +164,9 @@ public class VistaHabiPer1 extends javax.swing.JFrame {
             java.util.logging.Logger.getLogger(VistaHabiPer1.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
@@ -156,11 +177,15 @@ public class VistaHabiPer1 extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
+    private javax.swing.JButton BtnVol;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JTextArea jTextArea1;
+    private javax.swing.JTextArea jTextArea2;
     private javax.swing.JLabel lbTitulo;
+    private javax.swing.JLabel lbTitulo1;
     // End of variables declaration//GEN-END:variables
 }
