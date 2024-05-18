@@ -9,12 +9,29 @@ package gestionhotel;
  * @author USER
  */
 public class vistaPrincipal extends javax.swing.JFrame {
-
+    ArbolHabitaciones arbol = new ArbolHabitaciones();
+    
     /**
      * Creates new form vistaPrincipal
      */
+    public ArbolHabitaciones obtenerArbol() {
+        return arbol;
+    }
     public vistaPrincipal() {
         initComponents();
+        for (int i=0;i<4;i++) {
+            Habitacion habitacionNormal = new Habitacion(false);
+            habitacionNormal=new Habitacion(i+2);
+            arbol.insertar(habitacionNormal);
+        }
+
+        // Crear 2 objetos tipo habitación con esEspecial = true
+        for (int i=0;i<2;i++) {
+            Habitacion habitacionEspecial = new Habitacion(true);
+            habitacionEspecial =new Habitacion(i);
+            habitacionEspecial.setEsEspecial(true);
+            arbol.insertar(habitacionEspecial);
+        }
     }
 
     /**

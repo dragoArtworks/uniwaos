@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
 package gestionhotel;
 
 import javax.swing.JOptionPane;
@@ -11,13 +7,8 @@ import javax.swing.JOptionPane;
  * @author USER
  */
 public class VistaReserva extends javax.swing.JFrame {
-    Habitacion nueHabitacion1=new Habitacion(true);
-    Habitacion nueHabitacion2=new Habitacion(true);
-    Habitacion nueHabitacion3=new Habitacion(false);
-    Habitacion nueHabitacion4=new Habitacion(false);
-    Habitacion nueHabitacion5=new Habitacion(false);
-    Habitacion nueHabitacion6=new Habitacion(false);
-    
+    vistaPrincipal nvista=new vistaPrincipal();
+    ArbolHabitaciones arbol=new ArbolHabitaciones();
     Reserva nuevaReserva = new Reserva();
     
         int tipoHabitacion=0; //////////////////////////////////////////////////////////////
@@ -34,6 +25,9 @@ public class VistaReserva extends javax.swing.JFrame {
      */
     public VistaReserva() {
         initComponents();
+        arbol=nvista.obtenerArbol();
+        // Crear 4 objetos tipo habitación con esEspecial = false
+        
     }
 
     /**
@@ -278,15 +272,26 @@ public class VistaReserva extends javax.swing.JFrame {
         tiempoEstadia = (EstadiaCbox.getSelectedIndex())+1;
         numeroPersonas = (NumPerCbox.getSelectedIndex())+1;
         diaInicial=(FechaCbox.getSelectedIndex())+1;
-        tipoHabitacion=HabComboBox.getSelectedIndex()+1;
+        tipoHabitacion=HabComboBox.getSelectedIndex();
         if (nuevaReserva.ReservarHabitacion(diaInicial, tiempoEstadia)) {
             if(tipoHabitacion==0){
-                nueHabitacion3=new Habitacion(2);
-                nuevaReserva = new Reserva(nombre, nDocu, edad, telefono, tiempoEstadia, numeroPersonas,nueHabitacion3.getNumHabitacion());
-            }else if(tipoHabitacion==1){
-                nueHabitacion1=new Habitacion(0);
-                nuevaReserva = new Reserva(nombre, nDocu, edad, telefono, tiempoEstadia, numeroPersonas,nueHabitacion1.getNumHabitacion());
+                JOptionPane.showMessageDialog(null, "existe");
+                JOptionPane.showMessageDialog(null, " indice =   "+arbol.dispHabitacionesNormales());
+                if(arbol.dispHabitacionesNormales()>=1){
+                    JOptionPane.showMessageDialog(null, "existe---------");
+                    nuevaReserva = new Reserva(nombre, nDocu, edad, telefono, tiempoEstadia, numeroPersonas,arbol.dispHabitacionesEspeciales());
+                    int index=arbol.dispHabitacionesEspeciales();
+                    arbol.habitacionesNormalesEnc(index);
+                    arbol.printInOrder();
+                }
             }
+////            if(tipoHabitacion==0){
+////                nueHabitacion3=new Habitacion(2);
+////                nuevaReserva = new Reserva(nombre, nDocu, edad, telefono, tiempoEstadia, numeroPersonas,nueHabitacion3.getNumHabitacion());
+////            }else if(tipoHabitacion==1){
+////                nueHabitacion1=new Habitacion(0);
+////                nuevaReserva = new Reserva(nombre, nDocu, edad, telefono, tiempoEstadia, numeroPersonas,nueHabitacion1.getNumHabitacion());
+////            }
             
             JOptionPane.showMessageDialog(null, nuevaReserva);
         } else {
@@ -335,11 +340,14 @@ public class VistaReserva extends javax.swing.JFrame {
         //</editor-fold>
 
         /* Create and display the form */
+        
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new VistaReserva().setVisible(true);
+                
             }
         });
+        
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

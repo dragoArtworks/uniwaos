@@ -38,6 +38,7 @@ public class SistemaReserva {
       //////////////////////////////////////////////////////////////////////////////////
         JOptionPane.showMessageDialog(null, nuevaReserva);
         if(nuevaReserva.ReservarHabitacion(diaInicial, tiempoEstadia)){
+            
             nuevaReserva=new Reserva(nombre, nDocu, edad, telefono, tiempoEstadia, numeroPersonas, idHabitacion);
        //     nuevaReserva=new Reserva(nombre,nDocu, edad, telefono, tiempoEstadia, numeroPersonas);
             JOptionPane.showMessageDialog(null, nuevaReserva);
@@ -60,7 +61,9 @@ public class SistemaReserva {
             habitacionEspecial.setEsEspecial(true);
             arbol.insertar(habitacionEspecial);
         }
-
+        if(arbol.dispHabitacionesNormales()>=1){
+            
+        }
         // Operaciones adicionales que desees realizar con el árbol
         arbol.printInOrder();
         arbol.habitacionesEspeciales();

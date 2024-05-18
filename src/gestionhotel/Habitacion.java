@@ -15,7 +15,6 @@ public class Habitacion {
 
     public Habitacion(int numHabitacion) {
         this.numHabitacion = numHabitacion;
-        disponibilidad=false;
     }
     public Habitacion( boolean esEspecial){
         this.esEspecial=esEspecial;
@@ -29,8 +28,6 @@ public class Habitacion {
     public void setNumHabitacion(int numHabitacion) {
         this.numHabitacion = numHabitacion;
     }
-
-   
 
     public boolean isEsEspecial() {
         return esEspecial;
