@@ -10,10 +10,16 @@ package gestionhotel;
  */
 public class VistaHabiPer1 extends javax.swing.JFrame {
 
+    private static ArbolHabitaciones arbol;
+
     /**
      * Creates new form VistaHabiPer1
      */
-    public VistaHabiPer1() {
+//    public VistaHabiPer1() {
+//    }
+
+    public VistaHabiPer1(ArbolHabitaciones arbol) {
+        this.arbol = arbol;
         initComponents();
     }
 
@@ -133,9 +139,9 @@ public class VistaHabiPer1 extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void BtnVolActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnVolActionPerformed
-            vistaPrincipal pagPrin=new vistaPrincipal();
-            pagPrin.setVisible(true);
-            this.dispose();
+        vistaPrincipal pagPrin = new vistaPrincipal(arbol);
+        pagPrin.setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_BtnVolActionPerformed
 
     /**
@@ -171,7 +177,7 @@ public class VistaHabiPer1 extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new VistaHabiPer1().setVisible(true);
+                new VistaHabiPer1(arbol).setVisible(true);
             }
         });
     }

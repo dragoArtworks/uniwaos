@@ -1,7 +1,6 @@
 package gestionhotel;
 
 import javax.swing.JOptionPane;
-import jdk.nashorn.api.tree.BreakTree;
 
 /**
  *
@@ -39,11 +38,9 @@ public class ArbolHabitaciones {
         }
         return raiz;
     }
-    public boolean isEmpty(){
-        if (this.raiz==null) {
-            return true;
-        }
-        return false;
+
+    public boolean isEmpty() {
+        return this.raiz == null;
     }
 
     public void printInOrder() {
@@ -87,7 +84,8 @@ public class ArbolHabitaciones {
         }
         // Verifica si la habitación del nodo actual está disponible
         if (node.nHabitacion != null && node.nHabitacion.isDisponibilidad()) {
-            return node.nHabitacion.getNumHabitacion();
+            int a = node.nHabitacion.getNumHabitacion();
+            return a;
         }
         // Busca recursivamente en el subárbol izquierdo
         int leftResult = dispHabitacionesNormales(node.left);
@@ -122,7 +120,7 @@ public class ArbolHabitaciones {
             if (node.right != null && node.right.nHabitacion.isDisponibilidad()) {
                 JOptionPane.showMessageDialog(null, " se puede cambiar");
                 int index = node.nHabitacion.getNumHabitacion();
-                indice = index ;//condicion de verificacion
+                indice = index;//condicion de verificacion
             }
             dispHabitacionesEspeciales(node.left);
         }
@@ -143,6 +141,7 @@ public class ArbolHabitaciones {
                 node.nHabitacion.setDisponibilidad(false);
             } else {
                 habitacionesNormalesEnc(node.left, indice);
+                habitacionesNormalesEnc(node.right, indice);
             }
 
         }

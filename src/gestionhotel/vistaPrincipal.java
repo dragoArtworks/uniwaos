@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
 package gestionhotel;
 
 /**
@@ -9,33 +5,41 @@ package gestionhotel;
  * @author USER
  */
 public class vistaPrincipal extends javax.swing.JFrame {
-    ArbolHabitaciones arbol = new ArbolHabitaciones();
-    
-    /**
-     * Creates new form vistaPrincipal
-     */
+    private static ArbolHabitaciones arbol=new ArbolHabitaciones();
+
+
     public ArbolHabitaciones obtenerArbol() {
         return arbol;
     }
-    public vistaPrincipal() {
+    public vistaPrincipal(){
         initComponents();
-        if(arbol.isEmpty()){
-           for (int i=0;i<4;i++) {
-            Habitacion habitacionNormal = new Habitacion(false);
-            habitacionNormal=new Habitacion(i+2);
-            arbol.insertar(habitacionNormal);
-        }
+        vistaPrincipal nvistaPrincipal=new vistaPrincipal(arbol);
+    }
+            
+    public vistaPrincipal(ArbolHabitaciones arbol) {
+        this.arbol=arbol;
+        initComponents();
+        if (arbol.isEmpty()) {
+            for (int i = 0; i < 4; i++) {
+                Habitacion habitacionNormal = new Habitacion(false);
+                habitacionNormal = new Habitacion(i + 2);
+                arbol.insertar(habitacionNormal);
+            }
 
-        // Crear 2 objetos tipo habitación con esEspecial = true
-        for (int i=0;i<2;i++) {
-            Habitacion habitacionEspecial = new Habitacion(true);
-            habitacionEspecial =new Habitacion(i);
-            habitacionEspecial.setEsEspecial(true);
-            arbol.insertar(habitacionEspecial);
-        } 
+            for (int i = 0; i < 2; i++) {
+                Habitacion habitacionEspecial = new Habitacion(true);
+                habitacionEspecial = new Habitacion(i);
+                habitacionEspecial.setEsEspecial(true);
+                arbol.insertar(habitacionEspecial);
+            }
+            System.out.println("Arbol creado");           
+            arbol.printInOrder();
+            
         }
         
+
     }
+    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -129,13 +133,13 @@ public class vistaPrincipal extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void BtnReservasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnReservasActionPerformed
-        VistaReserva pagReserva= new VistaReserva();
+        VistaReserva pagReserva = new VistaReserva(arbol);
         pagReserva.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_BtnReservasActionPerformed
 
     private void BtnInfoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnInfoActionPerformed
-        VistaInfoHotel pagInfoHotel= new VistaInfoHotel();
+        VistaInfoHotel pagInfoHotel = new VistaInfoHotel(arbol);
         pagInfoHotel.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_BtnInfoActionPerformed
@@ -170,7 +174,7 @@ public class vistaPrincipal extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new vistaPrincipal().setVisible(true);
+                new vistaPrincipal(arbol).setVisible(true);
             }
         });
     }

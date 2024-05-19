@@ -9,11 +9,13 @@ package gestionhotel;
  * @author USER
  */
 public class VistaInfoHotel extends javax.swing.JFrame {
-
+//    vistaPrincipal nvista = new vistaPrincipal();
+    static ArbolHabitaciones arbol = new ArbolHabitaciones();
     /**
      * Creates new form VistaInfoHotel
      */
-    public VistaInfoHotel() {
+    public VistaInfoHotel(ArbolHabitaciones arbol) {
+        this.arbol=arbol;
         initComponents();
     }
 
@@ -125,7 +127,7 @@ public class VistaInfoHotel extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void BtnHabiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnHabiActionPerformed
-        VistaHabiPer1 habiPer1= new VistaHabiPer1();
+        VistaHabiPer1 habiPer1= new VistaHabiPer1(arbol);
         habiPer1.setVisible(true);
         this.dispose();
         
@@ -164,7 +166,7 @@ public class VistaInfoHotel extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new VistaInfoHotel().setVisible(true);
+                new VistaInfoHotel(arbol).setVisible(true);
             }
         });
     }
