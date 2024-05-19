@@ -4,6 +4,8 @@
  */
 package gestionhotel;
 
+import java.util.ArrayList;
+
 /**
  *
  * @author USER
@@ -11,12 +13,16 @@ package gestionhotel;
 public class VistaInfoHotel extends javax.swing.JFrame {
 //    vistaPrincipal nvista = new vistaPrincipal();
     static ArbolHabitaciones arbol = new ArbolHabitaciones();
+    static ArrayList<Reserva> reservas= new ArrayList<>();
+            
     /**
      * Creates new form VistaInfoHotel
      */
-    public VistaInfoHotel(ArbolHabitaciones arbol) {
+    public VistaInfoHotel(ArbolHabitaciones arbol,ArrayList<Reserva> reservas) {
         this.arbol=arbol;
+        this.reservas=reservas;
         initComponents();
+        this.setLocationRelativeTo(null);
     }
 
     /**
@@ -36,6 +42,7 @@ public class VistaInfoHotel extends javax.swing.JFrame {
         jTextArea1 = new javax.swing.JTextArea();
         lbTitulo1 = new javax.swing.JLabel();
         BtnHabi = new javax.swing.JButton();
+        BtnVol = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -71,6 +78,16 @@ public class VistaInfoHotel extends javax.swing.JFrame {
             }
         });
 
+        BtnVol.setBackground(new java.awt.Color(0, 102, 153));
+        BtnVol.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        BtnVol.setForeground(new java.awt.Color(255, 255, 255));
+        BtnVol.setText(" inicio");
+        BtnVol.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnVolActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -79,59 +96,66 @@ public class VistaInfoHotel extends javax.swing.JFrame {
                 .addGap(39, 39, 39)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel1)
-                                .addGap(18, 18, 18)
-                                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 313, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(lbTitulo))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 156, Short.MAX_VALUE)
-                        .addComponent(jLabel2)
-                        .addContainerGap())
+                        .addComponent(jLabel1)
+                        .addGap(18, 18, 18)
+                        .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 313, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(52, 52, 52)
+                        .addComponent(jLabel2))
+                    .addComponent(lbTitulo)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(6, 6, 6)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 474, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                .addComponent(BtnHabi)
-                                .addComponent(lbTitulo1)))
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(BtnHabi)
+                                    .addComponent(lbTitulo1))
+                                .addGap(236, 236, 236)
+                                .addComponent(BtnVol))
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 474, javax.swing.GroupLayout.PREFERRED_SIZE)))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jLabel2))
+                        .addGap(32, 32, 32)
+                        .addComponent(jLabel1))
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(32, 32, 32)
-                                .addComponent(jLabel1))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(24, 24, 24)
-                                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(lbTitulo)))
+                        .addGap(24, 24, 24)
+                        .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jLabel2))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(lbTitulo)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(32, 32, 32)
                 .addComponent(lbTitulo1)
-                .addGap(18, 18, 18)
-                .addComponent(BtnHabi)
-                .addContainerGap(70, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(18, 18, 18)
+                        .addComponent(BtnHabi)
+                        .addContainerGap(64, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(BtnVol)
+                        .addGap(72, 72, 72))))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void BtnHabiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnHabiActionPerformed
-        VistaHabiPer1 habiPer1= new VistaHabiPer1(arbol);
+        VistaHabiPer1 habiPer1= new VistaHabiPer1(arbol,reservas);
         habiPer1.setVisible(true);
         this.dispose();
         
     }//GEN-LAST:event_BtnHabiActionPerformed
+
+    private void BtnVolActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnVolActionPerformed
+        vistaPrincipal pagPrin = new vistaPrincipal(arbol,reservas);
+        pagPrin.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_BtnVolActionPerformed
 
     /**
      * @param args the command line arguments
@@ -166,13 +190,14 @@ public class VistaInfoHotel extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new VistaInfoHotel(arbol).setVisible(true);
+                new VistaInfoHotel(arbol,reservas).setVisible(true);
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton BtnHabi;
+    private javax.swing.JButton BtnVol;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

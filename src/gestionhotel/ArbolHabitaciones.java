@@ -83,7 +83,7 @@ public class ArbolHabitaciones {
             return -1; // Indica que no se encontró una habitación disponible
         }
         // Verifica si la habitación del nodo actual está disponible
-        if (node.nHabitacion != null && node.nHabitacion.isDisponibilidad()) {
+        if (node.nHabitacion != null && node.nHabitacion.isDisponibilidad()&& !node.nHabitacion.isEsEspecial()) {
             int a = node.nHabitacion.getNumHabitacion();
             return a;
         }
@@ -110,22 +110,40 @@ public class ArbolHabitaciones {
     public int dispHabitacionesEspeciales() {
         int indice = 0;
         indice = dispHabitacionesEspeciales(raiz);
-        System.out.println("indice=" + indice);
+        System.out.println("indice °°" + indice);
+        JOptionPane.showMessageDialog(null, " final " + indice);
         return indice;
+    }
+     public int dispHabitacionesEspeciales(NodoArbol node) {
+        if (node == null) {
+            return -1; // Indica que no se encontró una habitación disponible
+        }
+        // Verifica si la habitación del nodo actual está disponible
+        if (node.nHabitacion != null && node.nHabitacion.isDisponibilidad() && node.nHabitacion.isEsEspecial()) {
+            int a = node.nHabitacion.getNumHabitacion();
+            return a;
+        }
+        // Busca recursivamente en el subárbol izquierdo
+        int leftResult = dispHabitacionesEspeciales(node.left);
+        if (leftResult != -1) {
+            return leftResult; // Si encuentra una habitación disponible en el subárbol izquierdo, retorna su número
+        }
+        // Si no se encontró en el izquierdo, busca en el derecho
+        return dispHabitacionesEspeciales(node.right);
     }
 
-    private int dispHabitacionesEspeciales(NodoArbol node) {
-        int indice = 0;
-        if (node != null) {
-            if (node.right != null && node.right.nHabitacion.isDisponibilidad()) {
-                JOptionPane.showMessageDialog(null, " se puede cambiar");
-                int index = node.nHabitacion.getNumHabitacion();
-                indice = index;//condicion de verificacion
-            }
-            dispHabitacionesEspeciales(node.left);
-        }
-        return indice;
-    }
+//    private int dispHabitacionesEspeciales(NodoArbol node) {
+//        int indice = 0;
+//        if (node != null) {
+//            JOptionPane.showMessageDialog(null, " se puede cambiar------");
+//            if (node.nHabitacion != null && node.nHabitacion.isDisponibilidad() && node.nHabitacion.esEspecial) {
+//                indice = node.nHabitacion.getNumHabitacion();
+//            }
+//            dispHabitacionesEspeciales(node.left);
+//        }
+//        JOptionPane.showMessageDialog(null, "se puede cambiar" + indice);
+//        return indice;
+//    }
 
     //////////////////////////////////////////////////
     //encontrar una habitacion especifica
@@ -137,11 +155,26 @@ public class ArbolHabitaciones {
     private void habitacionesNormalesEnc(NodoArbol node, int indice) {
         if (node != null) {
             if (node.nHabitacion.getNumHabitacion() == indice) {
-
                 node.nHabitacion.setDisponibilidad(false);
             } else {
                 habitacionesNormalesEnc(node.left, indice);
                 habitacionesNormalesEnc(node.right, indice);
+            }
+        }
+    }
+
+    public void habitacionesEspecialesEnc(int indice) {
+        habitacionesEspecialesEnc(raiz, indice);
+    }
+
+    //nodos izquierdos
+    private void habitacionesEspecialesEnc(NodoArbol node, int indice) {
+        if (node != null) {
+            if (node.nHabitacion.getNumHabitacion() == indice) {
+                node.nHabitacion.setDisponibilidad(false);
+            } else {
+                habitacionesEspecialesEnc(node.left, indice);
+                habitacionesEspecialesEnc(node.right, indice);
             }
 
         }

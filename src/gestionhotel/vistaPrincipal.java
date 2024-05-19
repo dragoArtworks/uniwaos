@@ -1,24 +1,29 @@
 package gestionhotel;
 
+import java.util.ArrayList;
+
 /**
  *
  * @author USER
  */
 public class vistaPrincipal extends javax.swing.JFrame {
     private static ArbolHabitaciones arbol=new ArbolHabitaciones();
-
+    private static ArrayList<Reserva> reservas=new ArrayList<>();
 
     public ArbolHabitaciones obtenerArbol() {
         return arbol;
     }
     public vistaPrincipal(){
         initComponents();
-        vistaPrincipal nvistaPrincipal=new vistaPrincipal(arbol);
+        vistaPrincipal nvistaPrincipal=new vistaPrincipal(arbol,reservas);
+        
     }
             
-    public vistaPrincipal(ArbolHabitaciones arbol) {
+    public vistaPrincipal(ArbolHabitaciones arbol, ArrayList<Reserva> reservas) {
         this.arbol=arbol;
+        this.reservas=reservas;
         initComponents();
+        this.setLocationRelativeTo(null);
         if (arbol.isEmpty()) {
             for (int i = 0; i < 4; i++) {
                 Habitacion habitacionNormal = new Habitacion(false);
@@ -56,6 +61,7 @@ public class vistaPrincipal extends javax.swing.JFrame {
         BtnReservas = new javax.swing.JButton();
         BtnInfo = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
+        BtnEliminarReserva = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -66,6 +72,7 @@ public class vistaPrincipal extends javax.swing.JFrame {
         jLabel2.setForeground(new java.awt.Color(0, 0, 153));
         jLabel2.setText("UNIWAOOS");
 
+        BtnReservas.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         BtnReservas.setIcon(new javax.swing.ImageIcon(getClass().getResource("/gestionhotel/imagenes/icons8-reserva-80.png"))); // NOI18N
         BtnReservas.setText("Reserva Ya!");
         BtnReservas.setBorder(null);
@@ -89,60 +96,87 @@ public class vistaPrincipal extends javax.swing.JFrame {
 
         jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/gestionhotel/imagenes/WhatsApp Image 2024-05-14 at 9.21.00 AM (2).jpeg"))); // NOI18N
 
+        BtnEliminarReserva.setBackground(new java.awt.Color(0, 102, 153));
+        BtnEliminarReserva.setForeground(new java.awt.Color(250, 250, 250));
+        BtnEliminarReserva.setText("Eliminar reserva");
+        BtnEliminarReserva.setBorder(null);
+        BtnEliminarReserva.setBorderPainted(false);
+        BtnEliminarReserva.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        BtnEliminarReserva.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnEliminarReservaActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
+                .addGap(143, 143, 143)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(49, 49, 49)
-                        .addComponent(BtnReservas, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(52, 52, 52)
+                        .addGap(62, 62, 62)
                         .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 194, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(265, 265, 265)
+                        .addGap(115, 115, 115)
                         .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(150, 150, 150)
-                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 313, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 30, Short.MAX_VALUE)
-                .addComponent(BtnInfo, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(48, 48, 48))
+                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 313, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(160, Short.MAX_VALUE))
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(BtnReservas, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(148, 148, 148))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(BtnEliminarReserva, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(128, 128, 128)))
+                .addComponent(BtnInfo, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(51, 51, 51))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(84, 84, 84)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(BtnInfo, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(41, 41, 41)
                         .addComponent(jLabel1)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(2, 2, 2)
+                        .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 179, Short.MAX_VALUE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 177, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(345, 345, 345)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(BtnReservas)
-                            .addComponent(BtnInfo, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addGap(0, 20, Short.MAX_VALUE))
+                        .addComponent(BtnReservas)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(BtnEliminarReserva)))
+                .addContainerGap())
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void BtnReservasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnReservasActionPerformed
-        VistaReserva pagReserva = new VistaReserva(arbol);
+        VistaReserva pagReserva = new VistaReserva(arbol,reservas);
         pagReserva.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_BtnReservasActionPerformed
 
     private void BtnInfoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnInfoActionPerformed
-        VistaInfoHotel pagInfoHotel = new VistaInfoHotel(arbol);
+        VistaInfoHotel pagInfoHotel = new VistaInfoHotel(arbol,reservas);
         pagInfoHotel.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_BtnInfoActionPerformed
+
+    private void BtnEliminarReservaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnEliminarReservaActionPerformed
+        EliminarReserva pagEliminarReserva=new EliminarReserva(reservas);
+        pagEliminarReserva.setVisible(true);
+        this.dispose();
+
+    }//GEN-LAST:event_BtnEliminarReservaActionPerformed
 
     /**
      * @param args the command line arguments
@@ -174,12 +208,13 @@ public class vistaPrincipal extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new vistaPrincipal(arbol).setVisible(true);
+                new vistaPrincipal(arbol,reservas).setVisible(true);
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton BtnEliminarReserva;
     private javax.swing.JButton BtnInfo;
     private javax.swing.JButton BtnReservas;
     private javax.swing.JLabel jLabel1;

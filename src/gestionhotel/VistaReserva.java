@@ -1,5 +1,6 @@
 package gestionhotel;
 
+import java.util.ArrayList;
 import javax.swing.JOptionPane;
 
 /**
@@ -9,6 +10,7 @@ import javax.swing.JOptionPane;
 public class VistaReserva extends javax.swing.JFrame {
 
 //    vistaPrincipal nvista = new vistaPrincipal();
+    static ArrayList<Reserva> reservas=new ArrayList<>();
     static ArbolHabitaciones arbol = new ArbolHabitaciones();
     Reserva nuevaReserva = new Reserva();
 
@@ -28,9 +30,11 @@ public class VistaReserva extends javax.swing.JFrame {
 //        VistaReserva(arbol)=new VistaReserva(arbol);
 //        initComponents();
 //    }
-    public VistaReserva(ArbolHabitaciones arbol) {
+    public VistaReserva(ArbolHabitaciones arbol,ArrayList<Reserva> reservas) {
         this.arbol = arbol;
+        this.reservas=reservas;
         initComponents();
+        this.setLocationRelativeTo(null);
     }
     
 
@@ -63,6 +67,7 @@ public class VistaReserva extends javax.swing.JFrame {
         BtnSiguiente = new javax.swing.JButton();
         LbDatos8 = new javax.swing.JLabel();
         HabComboBox = new javax.swing.JComboBox<>();
+        BtnVol = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setPreferredSize(new java.awt.Dimension(674, 700));
@@ -146,19 +151,32 @@ public class VistaReserva extends javax.swing.JFrame {
             }
         });
 
+        BtnVol.setBackground(new java.awt.Color(153, 204, 255));
+        BtnVol.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        BtnVol.setText(" inicio");
+        BtnVol.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnVolActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
+                .addGap(43, 43, 43)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(39, 39, 39)
-                        .addComponent(lbTitulo)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(Icono))
+                        .addComponent(LbDatos8)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(HabComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 143, Short.MAX_VALUE)
+                        .addComponent(BtnSiguiente)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(BtnVol)
+                        .addGap(30, 30, 30))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(43, 43, 43)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(LbDatos1)
@@ -180,7 +198,7 @@ public class VistaReserva extends javax.swing.JFrame {
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(LbDatos3)
                                 .addGap(18, 18, 18)
-                                .addComponent(TxtNom, javax.swing.GroupLayout.PREFERRED_SIZE, 356, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(TxtNom, javax.swing.GroupLayout.PREFERRED_SIZE, 328, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
@@ -189,17 +207,14 @@ public class VistaReserva extends javax.swing.JFrame {
                                         .addComponent(TxtTele))
                                     .addComponent(LbDatos4))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(FechaCbox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(LbDatos8)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(HabComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(0, 110, Short.MAX_VALUE)))
-                .addContainerGap())
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(BtnSiguiente)
-                .addGap(84, 84, 84))
+                                .addComponent(FechaCbox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(39, 39, 39)
+                .addComponent(lbTitulo)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(Icono)
+                .addGap(91, 91, 91))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -241,12 +256,19 @@ public class VistaReserva extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(LbDatos7)
                     .addComponent(NumPerCbox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 17, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(BtnSiguiente)
-                    .addComponent(LbDatos8)
-                    .addComponent(HabComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(40, 40, 40))
+                .addGap(10, 10, 10)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(LbDatos8)
+                            .addComponent(HabComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(10, 10, 10))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(BtnSiguiente)
+                            .addComponent(BtnVol))
+                        .addGap(10, 10, 10)))
+                .addContainerGap(10, Short.MAX_VALUE))
         );
 
         pack();
@@ -281,7 +303,8 @@ public class VistaReserva extends javax.swing.JFrame {
             if (tipoHabitacion == 0) {
                 int index = arbol.dispHabitacionesNormales();
                 if (index >= 0) {
-                    nuevaReserva = new Reserva(nombre, nDocu, edad, telefono, tiempoEstadia, numeroPersonas, index);
+                    nuevaReserva = new Reserva(nombre, nDocu, edad, telefono, tiempoEstadia, numeroPersonas, index+1);
+                    reservas.add(nuevaReserva);
                     arbol.habitacionesNormalesEnc(index);
                     arbol.printInOrder();
                 } else {
@@ -290,20 +313,21 @@ public class VistaReserva extends javax.swing.JFrame {
             } else if (tipoHabitacion == 1) {
                 int index = arbol.dispHabitacionesEspeciales();
                 if (index >= 0) {
-                    nuevaReserva = new Reserva(nombre, nDocu, edad, telefono, tiempoEstadia, numeroPersonas, index);
-                    arbol.habitacionesNormalesEnc(index);
+                    nuevaReserva = new Reserva(nombre, nDocu, edad, telefono, tiempoEstadia, numeroPersonas, index+1);
+                    reservas.add(nuevaReserva);
+                    arbol.habitacionesEspecialesEnc(index);
                     arbol.printInOrder();
+                    JOptionPane.showMessageDialog(null, nuevaReserva);
                 } else {
                     JOptionPane.showMessageDialog(null, "No hay habitaciones especiales disponibles");
                 }
             }
-            JOptionPane.showMessageDialog(null, nuevaReserva);
-        } else {
+         } else {
             JOptionPane.showMessageDialog(null, "No se ha podido realizar la reserva");
         }
 
         if (numeroPersonas >= 0) {
-            VistaHabiPer1 habiPer1 = new VistaHabiPer1(arbol);
+            VistaHabiPer1 habiPer1 = new VistaHabiPer1(arbol,reservas);
             habiPer1.setVisible(true);
             this.dispose();
         }
@@ -318,6 +342,12 @@ public class VistaReserva extends javax.swing.JFrame {
     private void HabComboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_HabComboBoxActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_HabComboBoxActionPerformed
+
+    private void BtnVolActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnVolActionPerformed
+        vistaPrincipal pagPrin = new vistaPrincipal(arbol,reservas);
+        pagPrin.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_BtnVolActionPerformed
 
     /**
      * @param args the command line arguments
@@ -362,7 +392,7 @@ public class VistaReserva extends javax.swing.JFrame {
         
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new VistaReserva(arbol).setVisible(true);
+                new VistaReserva(arbol,reservas).setVisible(true);
                 
             }
         });
@@ -371,6 +401,7 @@ public class VistaReserva extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton BtnSiguiente;
+    private javax.swing.JButton BtnVol;
     private javax.swing.JComboBox<String> EstadiaCbox;
     private javax.swing.JComboBox<String> FechaCbox;
     private javax.swing.JComboBox<String> HabComboBox;
