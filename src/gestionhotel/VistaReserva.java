@@ -8,7 +8,8 @@ import javax.swing.JOptionPane;
  * @author USER
  */
 public class VistaReserva extends javax.swing.JFrame {
-    vistaPrincipal nvisPrincipal=new vistaPrincipal();
+
+    vistaPrincipal nvisPrincipal = new vistaPrincipal();
     static ArrayList<Reserva> reservas = new ArrayList<>();
     static ArbolHabitaciones arbol = new ArbolHabitaciones();
     Reserva nuevaReserva = new Reserva();
@@ -25,7 +26,7 @@ public class VistaReserva extends javax.swing.JFrame {
     public VistaReserva(ArbolHabitaciones arbol, ArrayList<Reserva> reservas) {
         this.arbol = arbol;
         this.reservas = reservas;
-        nvisPrincipal=new vistaPrincipal(arbol, reservas);
+        nvisPrincipal = new vistaPrincipal(arbol, reservas);
         initComponents();
         this.setLocationRelativeTo(null);
     }
@@ -298,8 +299,14 @@ public class VistaReserva extends javax.swing.JFrame {
                                 reservas.add(nuevaReserva);
                                 arbol.habitacionesNormalesEnc(index);
                                 arbol.printInOrder();
+                                JOptionPane.showMessageDialog(null,nuevaReserva);
                             } else {
                                 JOptionPane.showMessageDialog(null, "No hay habitaciones normales disponibles");
+                            }
+                            if (numeroPersonas >= 0) {
+                                VistaHabiPer1 habiPer1 = new VistaHabiPer1(arbol, reservas);
+                                habiPer1.setVisible(true);
+                                this.dispose();
                             }
                         } else if (tipoHabitacion == 1) {
                             int index = arbol.dispHabitacionesEspeciales();
@@ -313,41 +320,13 @@ public class VistaReserva extends javax.swing.JFrame {
                                 JOptionPane.showMessageDialog(null, "No hay habitaciones especiales disponibles");
                                 //== == == =
                             }
+                            if (numeroPersonas >= 0) {
+                                VistaHabiPer1 habiPer1 = new VistaHabiPer1(arbol, reservas);
+                                habiPer1.setVisible(true);
+                                this.dispose();
+                            }
 
-//                            if (nuevaReserva.ReservarHabitacion(diaInicial, tiempoEstadia)) {
-//                                ////////////////////////////////////////////////////////////                    
-//                            }
-//                        if (tipoHabitacion == 0) {
-//                            int index = arbol.dispHabitacionesNormales();
-//                            if (index >= 0) {
-//                                nuevaReserva = new Reserva(nombre, nDocu, edad, telefono, tiempoEstadia, numeroPersonas, index);
-//                                arbol.habitacionesNormalesEnc(index);
-//                                arbol.printInOrder();
-//                            } else {
-//                                JOptionPane.showMessageDialog(null, "No hay habitaciones normales disponibles");
-//                            }
-//                        } else if (tipoHabitacion == 1) {
-//                            int index = arbol.dispHabitacionesEspeciales();
-//                            if (index >= 0) {
-//                                nuevaReserva = new Reserva(nombre, nDocu, edad, telefono, tiempoEstadia, numeroPersonas, index);
-//                                arbol.habitacionesNormalesEnc(index);
-//                                arbol.printInOrder();
-//                            } else {
-//                                JOptionPane.showMessageDialog(null, "No hay habitaciones especiales disponibles");
-//                            }
-//                        }
-//                        JOptionPane.showMessageDialog(null, nuevaReserva);
-//                    
                         }
-// >>> >>> > 6997650df94fcfb1210516722a73da6972de2fb4
-
-                        //<< << << < HEAD
-//                    } else {
-//                        JOptionPane.showMessageDialog(null, "No se ha podido realizar la reserva");
-//                    }
-//
-                        
-                        // == == == =
                     } else {
                         JOptionPane.showMessageDialog(null, "No se ha podido realizar la reserva");
                     }

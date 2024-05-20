@@ -99,7 +99,6 @@ public class Reserva {
         int indice = diaInicial - 1;
         if (diasReservados[indice] == false && diasReservados[indice + (diasOcupados - 1)] == false && ((indice + (diasOcupados - 1)) <= 10)) {
             for (int i = 0; i < diasOcupados; i++) {
-                JOptionPane.showMessageDialog(null, "indice=" + indice);
                 diasReservados[indice] = true;
                 indice++;
             }
@@ -107,7 +106,6 @@ public class Reserva {
             for (boolean diasReservado : diasReservados) {
                 dias += diasReservado + "\n";
             }
-            JOptionPane.showMessageDialog(null, dias);
             return true;
         } else {
             return false;

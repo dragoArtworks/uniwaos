@@ -58,38 +58,24 @@ public class ArbolHabitaciones {
         }
     }
 
-    ///////////////////////////////////////////////////////
     /**
      * para obtener la disponibilidad de las habitaciuones y haer reservaciones
      */
     public int dispHabitacionesNormales() {
         int indice = 0;
         indice = dispHabitacionesNormales(raiz);
-        JOptionPane.showMessageDialog(null, "indice ++++=" + indice);
         return indice;
     }
-
-//    public int dispHabitacionesNormales(NodoArbol node) {
-//        if (node == null) {
-//            return 0;
-//        }
-//        if (node.left != null && node.left.nHabitacion.isDisponibilidad()) {
-//            return node.nHabitacion.getNumHabitacion() + 1;
-//        }
-//        return dispHabitacionesNormales(node.left) + dispHabitacionesNormales(node.right);
-//    }
     public int dispHabitacionesNormales(NodoArbol node) {
         if (node == null) {
             
             if(isEmpty()){
-                JOptionPane.showMessageDialog(null,"noooo");
             }
             return -1; // Indica que no se encontró una habitación disponible
             
         }
         // Verifica si la habitación del nodo actual está disponible
         if (node.nHabitacion != null && node.nHabitacion.isDisponibilidad()&& !node.nHabitacion.isEsEspecial()) {
-            JOptionPane.showMessageDialog(null, "holaaaa="+node.nHabitacion.getNumHabitacion());
             int a = node.nHabitacion.getNumHabitacion();
             return a;
         }
@@ -102,22 +88,10 @@ public class ArbolHabitaciones {
         return dispHabitacionesNormales(node.right);
     }
 
-//    //nodos izquierdos
-//    public int dispHabitacionesNormales(NodoArbol node) {
-//        int indice = 0;
-//        if (node != null) {
-//            if (node.left.nHabitacion.isDisponibilidad() && !node.nHabitacion.isEsEspecial()) {
-//                indice = node.nHabitacion.getNumHabitacion() + 1;//condicion de verificacion
-//            }
-//            dispHabitacionesNormales(node.left);
-//        }
-//        return indice;
-//    }
     public int dispHabitacionesEspeciales() {
         int indice = 0;
         indice = dispHabitacionesEspeciales(raiz);
         System.out.println("indice °°" + indice);
-        JOptionPane.showMessageDialog(null, " final " + indice);
         return indice;
     }
      public int dispHabitacionesEspeciales(NodoArbol node) {
@@ -138,20 +112,6 @@ public class ArbolHabitaciones {
         return dispHabitacionesEspeciales(node.right);
     }
 
-//    private int dispHabitacionesEspeciales(NodoArbol node) {
-//        int indice = 0;
-//        if (node != null) {
-//            JOptionPane.showMessageDialog(null, " se puede cambiar------");
-//            if (node.nHabitacion != null && node.nHabitacion.isDisponibilidad() && node.nHabitacion.esEspecial) {
-//                indice = node.nHabitacion.getNumHabitacion();
-//            }
-//            dispHabitacionesEspeciales(node.left);
-//        }
-//        JOptionPane.showMessageDialog(null, "se puede cambiar" + indice);
-//        return indice;
-//    }
-
-    //////////////////////////////////////////////////
     //encontrar una habitacion especifica
     public void habitacionesNormalesEnc(int indice) {
         habitacionesNormalesEnc(raiz, indice);

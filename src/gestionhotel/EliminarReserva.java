@@ -152,7 +152,6 @@ public class EliminarReserva extends javax.swing.JFrame {
     private void BuscraReservaJButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BuscraReservaJButtonActionPerformed
         if(!reservas.isEmpty()){
             String nombre=jTextField1.getText();
-            JOptionPane.showMessageDialog(null, "nombre= "+nombre);
             String n=nuReserva.encontrarReserva(reservas, nombre);
             
             if(!n.equals("")){
@@ -162,6 +161,7 @@ public class EliminarReserva extends javax.swing.JFrame {
         }else{
             JOptionPane.showMessageDialog(null,"UUUPS\n no existen reservas " ,"Error",JOptionPane.ERROR_MESSAGE);
         }
+        jTextField1.setText("");
     }//GEN-LAST:event_BuscraReservaJButtonActionPerformed
 
     private void BtnVolActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnVolActionPerformed
