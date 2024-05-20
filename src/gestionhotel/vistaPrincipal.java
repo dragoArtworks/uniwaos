@@ -16,7 +16,6 @@ public class vistaPrincipal extends javax.swing.JFrame {
     public vistaPrincipal(){
         initComponents();
         vistaPrincipal nvistaPrincipal=new vistaPrincipal(arbol,reservas);
-        
     }
             
     public vistaPrincipal(ArbolHabitaciones arbol, ArrayList<Reserva> reservas) {
@@ -30,7 +29,6 @@ public class vistaPrincipal extends javax.swing.JFrame {
                 habitacionNormal = new Habitacion(i + 2);
                 arbol.insertar(habitacionNormal);
             }
-
             for (int i = 0; i < 2; i++) {
                 Habitacion habitacionEspecial = new Habitacion(true);
                 habitacionEspecial = new Habitacion(i);
@@ -39,10 +37,7 @@ public class vistaPrincipal extends javax.swing.JFrame {
             }
             System.out.println("Arbol creado");           
             arbol.printInOrder();
-            
         }
-        
-
     }
     
 

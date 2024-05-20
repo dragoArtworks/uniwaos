@@ -11,7 +11,7 @@ import javax.swing.JOptionPane;
 public class Reserva {
 
     String nombre = "";
-    int nDocu = 0;
+    String nDocu = "";
     int edad = 0;
 //   int fechaReserva = 0;
     String telefono = "";
@@ -24,7 +24,7 @@ public class Reserva {
     public Reserva() {
     }
 
-    public Reserva(String nombre, int nDocu, int edad, String telefono, int tiempoEstadia, int numeroPersonas, int idHabitacion) {
+    public Reserva(String nombre, String nDocu, int edad, String telefono, int tiempoEstadia, int numeroPersonas, int idHabitacion) {
         this.nombre = nombre;
         this.nDocu = nDocu;
         this.edad = edad;
@@ -43,11 +43,11 @@ public class Reserva {
         this.nombre = nombre;
     }
 
-    public int getnDocu() {
+    public String getnDocu() {
         return nDocu;
     }
 
-    public void setnDocu(int nDocu) {
+    public void setnDocu(String nDocu) {
         this.nDocu = nDocu;
     }
 

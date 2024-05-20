@@ -8,35 +8,27 @@ import javax.swing.JOptionPane;
  * @author USER
  */
 public class VistaReserva extends javax.swing.JFrame {
-
-//    vistaPrincipal nvista = new vistaPrincipal();
-    static ArrayList<Reserva> reservas=new ArrayList<>();
+    vistaPrincipal nvisPrincipal=new vistaPrincipal();
+    static ArrayList<Reserva> reservas = new ArrayList<>();
     static ArbolHabitaciones arbol = new ArbolHabitaciones();
     Reserva nuevaReserva = new Reserva();
 
     int tipoHabitacion = 0; //////////////////////////////////////////////////////////////
     String nombre = "";
-    int nDocu = 0;
+    String nDocu = "";
     int edad = 0;
     String telefono = "";
     int tiempoEstadia = 0;
     int numeroPersonas = 0;
     int diaInicial = 0;
 
-    /**
-     * Creates new form VistaReserva
-     */
-//    public VistaReserva(){
-//        VistaReserva(arbol)=new VistaReserva(arbol);
-//        initComponents();
-//    }
-    public VistaReserva(ArbolHabitaciones arbol,ArrayList<Reserva> reservas) {
+    public VistaReserva(ArbolHabitaciones arbol, ArrayList<Reserva> reservas) {
         this.arbol = arbol;
-        this.reservas=reservas;
+        this.reservas = reservas;
+        nvisPrincipal=new vistaPrincipal(arbol, reservas);
         initComponents();
         this.setLocationRelativeTo(null);
     }
-    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -258,17 +250,13 @@ public class VistaReserva extends javax.swing.JFrame {
                     .addComponent(NumPerCbox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(10, 10, 10)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(LbDatos8)
-                            .addComponent(HabComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(10, 10, 10))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(BtnSiguiente)
-                            .addComponent(BtnVol))
-                        .addGap(10, 10, 10)))
-                .addContainerGap(10, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(LbDatos8)
+                        .addComponent(HabComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(BtnSiguiente)
+                        .addComponent(BtnVol)))
+                .addContainerGap(20, Short.MAX_VALUE))
         );
 
         pack();
@@ -292,51 +280,89 @@ public class VistaReserva extends javax.swing.JFrame {
 
     private void BtnSiguienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnSiguienteActionPerformed
         nombre = TxtNom.getText();
-        nDocu = Integer.parseInt(TxtNumDoc.getText());
+        nDocu = TxtNumDoc.getText();
         edad = Integer.parseInt(TxtEdad.getText());
         telefono = TxtTele.getText();
         tiempoEstadia = (EstadiaCbox.getSelectedIndex()) + 1;
         numeroPersonas = (NumPerCbox.getSelectedIndex()) + 1;
         diaInicial = (FechaCbox.getSelectedIndex()) + 1;
         tipoHabitacion = HabComboBox.getSelectedIndex();
-        if (nuevaReserva.ReservarHabitacion(diaInicial, tiempoEstadia)) {
-            if (tipoHabitacion == 0) {
-                int index = arbol.dispHabitacionesNormales();
-                if (index >= 0) {
-                    nuevaReserva = new Reserva(nombre, nDocu, edad, telefono, tiempoEstadia, numeroPersonas, index+1);
-                    reservas.add(nuevaReserva);
-                    arbol.habitacionesNormalesEnc(index);
-                    arbol.printInOrder();
+        if (CantCarac(nDocu) == true && esNumero(nDocu) == true) {
+            if (edad >= 18 && edad <= 100) {
+                if (CantCaracTel(telefono) == true && esNumero(telefono) == true) {
+                    if (nuevaReserva.ReservarHabitacion(diaInicial, tiempoEstadia)) {
+                        if (tipoHabitacion == 0) {
+                            int index = arbol.dispHabitacionesNormales();
+                            if (index >= 0) {
+                                nuevaReserva = new Reserva(nombre, nDocu, edad, telefono, tiempoEstadia, numeroPersonas, index + 1);
+                                reservas.add(nuevaReserva);
+                                arbol.habitacionesNormalesEnc(index);
+                                arbol.printInOrder();
+                            } else {
+                                JOptionPane.showMessageDialog(null, "No hay habitaciones normales disponibles");
+                            }
+                        } else if (tipoHabitacion == 1) {
+                            int index = arbol.dispHabitacionesEspeciales();
+                            if (index >= 0) {
+                                nuevaReserva = new Reserva(nombre, nDocu, edad, telefono, tiempoEstadia, numeroPersonas, index + 1);
+                                reservas.add(nuevaReserva);
+                                arbol.habitacionesEspecialesEnc(index);
+                                arbol.printInOrder();
+                                JOptionPane.showMessageDialog(null, nuevaReserva);
+                            } else {
+                                JOptionPane.showMessageDialog(null, "No hay habitaciones especiales disponibles");
+                                //== == == =
+                            }
+
+//                            if (nuevaReserva.ReservarHabitacion(diaInicial, tiempoEstadia)) {
+//                                ////////////////////////////////////////////////////////////                    
+//                            }
+//                        if (tipoHabitacion == 0) {
+//                            int index = arbol.dispHabitacionesNormales();
+//                            if (index >= 0) {
+//                                nuevaReserva = new Reserva(nombre, nDocu, edad, telefono, tiempoEstadia, numeroPersonas, index);
+//                                arbol.habitacionesNormalesEnc(index);
+//                                arbol.printInOrder();
+//                            } else {
+//                                JOptionPane.showMessageDialog(null, "No hay habitaciones normales disponibles");
+//                            }
+//                        } else if (tipoHabitacion == 1) {
+//                            int index = arbol.dispHabitacionesEspeciales();
+//                            if (index >= 0) {
+//                                nuevaReserva = new Reserva(nombre, nDocu, edad, telefono, tiempoEstadia, numeroPersonas, index);
+//                                arbol.habitacionesNormalesEnc(index);
+//                                arbol.printInOrder();
+//                            } else {
+//                                JOptionPane.showMessageDialog(null, "No hay habitaciones especiales disponibles");
+//                            }
+//                        }
+//                        JOptionPane.showMessageDialog(null, nuevaReserva);
+//                    
+                        }
+// >>> >>> > 6997650df94fcfb1210516722a73da6972de2fb4
+
+                        //<< << << < HEAD
+//                    } else {
+//                        JOptionPane.showMessageDialog(null, "No se ha podido realizar la reserva");
+//                    }
+//
+                        
+                        // == == == =
+                    } else {
+                        JOptionPane.showMessageDialog(null, "No se ha podido realizar la reserva");
+                    }
                 } else {
-                    JOptionPane.showMessageDialog(null, "No hay habitaciones normales disponibles");
+                    JOptionPane.showMessageDialog(null, "Teléfono no válido, intente nuevamente");
+
                 }
-            } else if (tipoHabitacion == 1) {
-                int index = arbol.dispHabitacionesEspeciales();
-                if (index >= 0) {
-                    nuevaReserva = new Reserva(nombre, nDocu, edad, telefono, tiempoEstadia, numeroPersonas, index+1);
-                    reservas.add(nuevaReserva);
-                    arbol.habitacionesEspecialesEnc(index);
-                    arbol.printInOrder();
-                    JOptionPane.showMessageDialog(null, nuevaReserva);
-                } else {
-                    JOptionPane.showMessageDialog(null, "No hay habitaciones especiales disponibles");
-                }
+            } else {
+                JOptionPane.showMessageDialog(null, "Edad no válida, intente nuevamente");
             }
-         } else {
-            JOptionPane.showMessageDialog(null, "No se ha podido realizar la reserva");
+        } else {
+            JOptionPane.showMessageDialog(null, "Número de documento no válido, intente nuevamente");
         }
 
-        if (numeroPersonas >= 0) {
-            VistaHabiPer1 habiPer1 = new VistaHabiPer1(arbol,reservas);
-            habiPer1.setVisible(true);
-            this.dispose();
-        }
-    
-//        else{
-//           VistaHabi2Per habi2Per = new VistaHabi2Per();
-//           habi2Per.setVisible(true);
-//           this.dispose();
-//        }
+
     }//GEN-LAST:event_BtnSiguienteActionPerformed
 
     private void HabComboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_HabComboBoxActionPerformed
@@ -344,10 +370,23 @@ public class VistaReserva extends javax.swing.JFrame {
     }//GEN-LAST:event_HabComboBoxActionPerformed
 
     private void BtnVolActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnVolActionPerformed
-        vistaPrincipal pagPrin = new vistaPrincipal(arbol,reservas);
+        vistaPrincipal pagPrin = new vistaPrincipal(arbol, reservas);
         pagPrin.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_BtnVolActionPerformed
+    public static boolean CantCarac(String input) {
+        // Verifica que la longitud esté entre 8 y 10 caracteres y que no contenga espacios
+        return input.length() >= 8 && input.length() <= 10 && !input.contains(" ");
+    }
+
+    public static boolean CantCaracTel(String input) {
+        return input.length() == 10 && !input.contains(" ");
+    }
+
+    public static boolean esNumero(String input) {
+        // Verifica que el string contenga solo números
+        return input.matches("\\d+");
+    }
 
     /**
      * @param args the command line arguments
@@ -364,39 +403,34 @@ public class VistaReserva extends javax.swing.JFrame {
                     javax.swing.UIManager.setLookAndFeel(info.getClassName());
                     break;
 
-}
+                }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(VistaReserva.class  
+            java.util.logging.Logger.getLogger(VistaReserva.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
 
-.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (InstantiationException ex) {
+            java.util.logging.Logger.getLogger(VistaReserva.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
 
-} catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(VistaReserva.class  
+        } catch (IllegalAccessException ex) {
+            java.util.logging.Logger.getLogger(VistaReserva.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
 
-.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-
-} catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(VistaReserva.class  
-
-.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-
-} catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(VistaReserva.class  
-
-.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+            java.util.logging.Logger.getLogger(VistaReserva.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
         /* Create and display the form */
-        
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new VistaReserva(arbol,reservas).setVisible(true);
-                
+                new VistaReserva(arbol, reservas).setVisible(true);
+
             }
         });
-        
+
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

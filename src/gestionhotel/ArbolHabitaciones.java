@@ -80,10 +80,16 @@ public class ArbolHabitaciones {
 //    }
     public int dispHabitacionesNormales(NodoArbol node) {
         if (node == null) {
+            
+            if(isEmpty()){
+                JOptionPane.showMessageDialog(null,"noooo");
+            }
             return -1; // Indica que no se encontró una habitación disponible
+            
         }
         // Verifica si la habitación del nodo actual está disponible
         if (node.nHabitacion != null && node.nHabitacion.isDisponibilidad()&& !node.nHabitacion.isEsEspecial()) {
+            JOptionPane.showMessageDialog(null, "holaaaa="+node.nHabitacion.getNumHabitacion());
             int a = node.nHabitacion.getNumHabitacion();
             return a;
         }
