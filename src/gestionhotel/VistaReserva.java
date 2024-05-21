@@ -280,68 +280,76 @@ public class VistaReserva extends javax.swing.JFrame {
     }//GEN-LAST:event_TxtEdadActionPerformed
 
     private void BtnSiguienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnSiguienteActionPerformed
-        nombre = TxtNom.getText();
-        nDocu = TxtNumDoc.getText();
-        edad = Integer.parseInt(TxtEdad.getText());
-        telefono = TxtTele.getText();
-        tiempoEstadia = (EstadiaCbox.getSelectedIndex()) + 1;
-        numeroPersonas = (NumPerCbox.getSelectedIndex()) + 1;
-        diaInicial = (FechaCbox.getSelectedIndex()) + 1;
-        tipoHabitacion = HabComboBox.getSelectedIndex();
-        if (CantCarac(nDocu) == true && esNumero(nDocu) == true) {
-            if (edad >= 18 && edad <= 100) {
-                if (CantCaracTel(telefono) == true && esNumero(telefono) == true) {
-                    if (nuevaReserva.ReservarHabitacion(diaInicial, tiempoEstadia)) {
-                        if (tipoHabitacion == 0) {
-                            int index = arbol.dispHabitacionesNormales();
-                            if (index >= 0) {
-                                nuevaReserva = new Reserva(nombre, nDocu, edad, telefono, tiempoEstadia, numeroPersonas, index + 1);
-                                reservas.add(nuevaReserva);
-                                arbol.habitacionesNormalesEnc(index);
-                                arbol.printInOrder();
-                                JOptionPane.showMessageDialog(null,nuevaReserva);
+
+        if (TxtNom.getText().equals("") || TxtNumDoc.equals("") || TxtEdad.getText().equals("") || TxtTele.getText().equals("")) {
+            JOptionPane.showMessageDialog(null, " Ningun campo puede estar vacio");
+        } else {
+            nombre = TxtNom.getText();
+            nDocu = TxtNumDoc.getText();
+
+            String edadvalidar = TxtEdad.getText();
+            telefono = TxtTele.getText();
+            tiempoEstadia = (EstadiaCbox.getSelectedIndex()) + 1;
+            numeroPersonas = (NumPerCbox.getSelectedIndex()) + 1;
+            diaInicial = (FechaCbox.getSelectedIndex()) + 1;
+            tipoHabitacion = HabComboBox.getSelectedIndex();
+            if (CantCarac(nDocu) == true && esNumero(nDocu) == true) {
+                if (esNumero(edadvalidar) == false) {
+                    edad = Integer.parseInt(TxtEdad.getText());
+                    if (edad >= 18 && edad <= 90) {
+                        if (CantCaracTel(telefono) == true && esNumero(telefono) == true) {
+                            if (nuevaReserva.ReservarHabitacion(diaInicial, tiempoEstadia)) {
+                                if (tipoHabitacion == 0) {
+                                    int index = arbol.dispHabitacionesNormales();
+                                    if (index >= 0) {
+                                        nuevaReserva = new Reserva(nombre, nDocu, edad, telefono, tiempoEstadia, numeroPersonas, index + 1);
+                                        reservas.add(nuevaReserva);
+                                        arbol.habitacionesNormalesEnc(index);
+                                        arbol.printInOrder();
+                                        JOptionPane.showMessageDialog(null, nuevaReserva);
+                                    } else {
+                                        JOptionPane.showMessageDialog(null, "No hay habitaciones normales disponibles");
+                                    }
+                                     if (numeroPersonas >= 0) {
+                                        vistaPrincipal nvisPrincipal=new vistaPrincipal(arbol, reservas);
+                                        nvisPrincipal.setVisible(true);
+                                        this.dispose();
+                                    }
+                                } else if (tipoHabitacion == 1) {
+                                    int index = arbol.dispHabitacionesEspeciales();
+                                    if (index >= 0) {
+                                        nuevaReserva = new Reserva(nombre, nDocu, edad, telefono, tiempoEstadia, numeroPersonas, index + 1);
+                                        reservas.add(nuevaReserva);
+                                        arbol.habitacionesEspecialesEnc(index);
+                                        arbol.printInOrder();
+                                        JOptionPane.showMessageDialog(null, nuevaReserva);
+                                    } else {
+                                        JOptionPane.showMessageDialog(null, "No hay habitaciones especiales disponibles");
+                                        //== == == =
+                                    }
+                                    if (numeroPersonas >= 0) {
+                                        vistaPrincipal nvisPrincipal=new vistaPrincipal(arbol, reservas);
+                                        nvisPrincipal.setVisible(true);
+                                        this.dispose();
+                                    }
+
+                                }
                             } else {
-                                JOptionPane.showMessageDialog(null, "No hay habitaciones normales disponibles");
+                                JOptionPane.showMessageDialog(null, "No se ha podido realizar la reserva");
                             }
-                            if (numeroPersonas >= 0) {
-                                VistaHabiPer1 habiPer1 = new VistaHabiPer1(arbol, reservas);
-                                habiPer1.setVisible(true);
-                                this.dispose();
-                            }
-                        } else if (tipoHabitacion == 1) {
-                            int index = arbol.dispHabitacionesEspeciales();
-                            if (index >= 0) {
-                                nuevaReserva = new Reserva(nombre, nDocu, edad, telefono, tiempoEstadia, numeroPersonas, index + 1);
-                                reservas.add(nuevaReserva);
-                                arbol.habitacionesEspecialesEnc(index);
-                                arbol.printInOrder();
-                                JOptionPane.showMessageDialog(null, nuevaReserva);
-                            } else {
-                                JOptionPane.showMessageDialog(null, "No hay habitaciones especiales disponibles");
-                                //== == == =
-                            }
-                            if (numeroPersonas >= 0) {
-                                VistaHabiPer1 habiPer1 = new VistaHabiPer1(arbol, reservas);
-                                habiPer1.setVisible(true);
-                                this.dispose();
-                            }
+                        } else {
+                            JOptionPane.showMessageDialog(null, "Teléfono no válido, intente nuevamente");
 
                         }
-                    } else {
-                        JOptionPane.showMessageDialog(null, "No se ha podido realizar la reserva");
                     }
                 } else {
-                    JOptionPane.showMessageDialog(null, "Teléfono no válido, intente nuevamente");
-
+                    JOptionPane.showMessageDialog(null, "Edad no válida, intente nuevamente");
                 }
             } else {
-                JOptionPane.showMessageDialog(null, "Edad no válida, intente nuevamente");
+                JOptionPane.showMessageDialog(null, "Número de documento no válido, intente nuevamente");
             }
-        } else {
-            JOptionPane.showMessageDialog(null, "Número de documento no válido, intente nuevamente");
+
         }
-
-
     }//GEN-LAST:event_BtnSiguienteActionPerformed
 
     private void HabComboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_HabComboBoxActionPerformed
@@ -364,7 +372,12 @@ public class VistaReserva extends javax.swing.JFrame {
 
     public static boolean esNumero(String input) {
         // Verifica que el string contenga solo números
-        return input.matches("\\d+");
+        return input.matches("\\d{10}");
+    }
+
+    public static boolean esLetra(String input) {
+        // Verifica que el string contenga solo números
+        return input.matches("\\d{3}");
     }
 
     /**

@@ -64,17 +64,22 @@ public class EliminarReserva extends javax.swing.JFrame {
 
         jLabel3.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(0, 102, 153));
-        jLabel3.setText("Ingresa el nombre del titular de la Reserva que deseas eliminar");
+        jLabel3.setText("Ingresa el documento del titular de la Reserva que deseas eliminar");
 
         jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/gestionhotel/imagenes/WhatsApp Image 2024-05-14 at 9.21.00 AM (1).jpeg"))); // NOI18N
         jLabel5.setText("jLabel5");
 
-        BuscraReservaJButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/gestionhotel/imagenes/magnifier_magnifying_glass_icon_149435.png"))); // NOI18N
+        BuscraReservaJButton.setFont(new java.awt.Font("Tahoma", 1, 10)); // NOI18N
+        BuscraReservaJButton.setForeground(new java.awt.Color(102, 51, 0));
+        BuscraReservaJButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/gestionhotel/imagenes/icons8-basura-50.png"))); // NOI18N
+        BuscraReservaJButton.setText("Eliminar");
         BuscraReservaJButton.setBorder(null);
         BuscraReservaJButton.setBorderPainted(false);
         BuscraReservaJButton.setContentAreaFilled(false);
         BuscraReservaJButton.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         BuscraReservaJButton.setHideActionText(true);
+        BuscraReservaJButton.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        BuscraReservaJButton.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
         BuscraReservaJButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 BuscraReservaJButtonActionPerformed(evt);
@@ -106,17 +111,18 @@ public class EliminarReserva extends javax.swing.JFrame {
                                 .addGap(84, 84, 84)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(layout.createSequentialGroup()
-                                        .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 322, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(BuscraReservaJButton))
-                                    .addGroup(layout.createSequentialGroup()
                                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                             .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE)
                                             .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 258, javax.swing.GroupLayout.PREFERRED_SIZE))
                                         .addGap(18, 18, 18)
-                                        .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                        .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGap(14, 14, 14)
+                                        .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 322, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(BuscraReservaJButton, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE))))
                             .addGroup(layout.createSequentialGroup()
-                                .addGap(230, 230, 230)
+                                .addContainerGap()
                                 .addComponent(BtnVol)))
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
@@ -124,7 +130,9 @@ public class EliminarReserva extends javax.swing.JFrame {
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(72, 72, 72)
+                .addContainerGap()
+                .addComponent(BtnVol)
+                .addGap(37, 37, 37)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel2)
@@ -134,12 +142,12 @@ public class EliminarReserva extends javax.swing.JFrame {
                 .addGap(26, 26, 26)
                 .addComponent(jLabel3)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(BuscraReservaJButton, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(BtnVol)
-                .addContainerGap(22, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(BuscraReservaJButton, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(20, 20, 20)
+                        .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(65, Short.MAX_VALUE))
         );
 
         pack();

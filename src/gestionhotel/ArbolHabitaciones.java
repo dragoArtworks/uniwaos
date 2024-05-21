@@ -1,11 +1,6 @@
 package gestionhotel;
 
 import javax.swing.JOptionPane;
-
-/**
- *
- * @author USER
- */
 public class ArbolHabitaciones {
 
     private NodoArbol raiz;

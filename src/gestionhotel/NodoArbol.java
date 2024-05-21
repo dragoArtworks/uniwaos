@@ -1,9 +1,6 @@
 package gestionhotel;
 
-/**
- *
- * @author USER
- */
+
 public class NodoArbol {
     Habitacion nHabitacion;
     NodoArbol left;

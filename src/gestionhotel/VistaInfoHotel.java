@@ -11,13 +11,9 @@ import java.util.ArrayList;
  * @author USER
  */
 public class VistaInfoHotel extends javax.swing.JFrame {
-//    vistaPrincipal nvista = new vistaPrincipal();
     static ArbolHabitaciones arbol = new ArbolHabitaciones();
     static ArrayList<Reserva> reservas= new ArrayList<>();
             
-    /**
-     * Creates new form VistaInfoHotel
-     */
     public VistaInfoHotel(ArbolHabitaciones arbol,ArrayList<Reserva> reservas) {
         this.arbol=arbol;
         this.reservas=reservas;

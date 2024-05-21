@@ -6,22 +6,11 @@ package gestionhotel;
 
 import java.util.ArrayList;
 
-/**
- *
- * @author USER
- */
 public class VistaHabiPer1 extends javax.swing.JFrame {
 
     private static ArbolHabitaciones arbol;
     static ArrayList<Reserva> reservas=new ArrayList<>();
-           
-
-    /**
-     * Creates new form VistaHabiPer1
-     */
-//    public VistaHabiPer1() {
-//    }
-
+     
     public VistaHabiPer1(ArbolHabitaciones arbol,ArrayList<Reserva> reservas) {
         this.arbol = arbol;
         this.reservas=reservas;

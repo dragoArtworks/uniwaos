@@ -13,22 +13,22 @@ public class Reserva {
     String nombre = "";
     String nDocu = "";
     int edad = 0;
-//   int fechaReserva = 0;
     String telefono = "";
     int tiempoEstadia = 0;
     int numeroPersonas = 0;
-    boolean esEspecial = false; //revisar
-    int idHabitacion;     //revisar
+    boolean esEspecial = false; 
+    int idHabitacion; 
     boolean[] diasReservados = new boolean[10];
 
     public Reserva() {
     }
 
-    public Reserva(String nombre, String nDocu, int edad, String telefono, int tiempoEstadia, int numeroPersonas, int idHabitacion) {
+    public Reserva(String nombre, String nDocu, int edad, String telefono, int tiempoEstadia, int numeroPersonas,
+            int idHabitacion) {
         this.nombre = nombre;
         this.nDocu = nDocu;
         this.edad = edad;
-//        this.fechaReserva = fechaReserva;
+        // this.fechaReserva = fechaReserva;
         this.telefono = telefono;
         this.tiempoEstadia = tiempoEstadia;
         this.numeroPersonas = numeroPersonas;
@@ -97,7 +97,8 @@ public class Reserva {
 
     public boolean ReservarHabitacion(int diaInicial, int diasOcupados) {
         int indice = diaInicial - 1;
-        if (diasReservados[indice] == false && diasReservados[indice + (diasOcupados - 1)] == false && ((indice + (diasOcupados - 1)) <= 10)) {
+        if (diasReservados[indice] == false && diasReservados[indice + (diasOcupados - 1)] == false
+                && ((indice + (diasOcupados - 1)) <= 10)) {
             for (int i = 0; i < diasOcupados; i++) {
                 diasReservados[indice] = true;
                 indice++;
@@ -122,20 +123,25 @@ public class Reserva {
 
     public String encontrarReserva(ArrayList<Reserva> reservas, String nombre) {
         String n = "";
-        String nNombre = nombre.toLowerCase();
+        String nNombre = nombre;
+        boolean si=false;
         for (Reserva reserva : reservas) {
             if (reservas.isEmpty()) {
                 break;
             } else {
-                if (nNombre.equals(reserva.getNombre().toLowerCase())) {
+                if (nNombre.equals(reserva.getnDocu())) {
                     JOptionPane.showMessageDialog(null, "Esta es tu reserva: \n"
                             + reserva);
                     n = reserva.getNombre().toLowerCase();
-                } else {
-                    JOptionPane.showMessageDialog(null, "\t\tUUPS\n Tu Reserva no ha sido encontrada","reserva no encontrada" , JOptionPane.ERROR_MESSAGE);
+                    si=true;
                 }
+                
             }
         }
+        if(!si){
+                    JOptionPane.showMessageDialog(null, "\t\tUUPS\n Tu Reserva no ha sido encontrada",
+                            "reserva no encontrada", JOptionPane.ERROR_MESSAGE);
+                }
         return n;
     }
 
@@ -144,7 +150,7 @@ public class Reserva {
         boolean found = false;
         while (iterator.hasNext()) {
             Reserva reserva = iterator.next();
-            if (reserva.getNombre().toLowerCase().equals(nombre.toLowerCase())) {
+            if (reserva.getnDocu().equals(nombre)) {
                 iterator.remove();
                 JOptionPane.showMessageDialog(null, "Tu reserva ha sido eliminada");
                 found = true;
@@ -152,10 +158,11 @@ public class Reserva {
             }
         }
         if (!found) {
-            JOptionPane.showMessageDialog(null, "No se encontró una reserva con ese nombre", "Error", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(null, "No se encontró una reserva con este documento", "Error",
+                    JOptionPane.ERROR_MESSAGE);
         } else if (reservas.isEmpty()) {
             System.out.println("No hay reservas");
-        } 
+        }
         return reservas;
     }
 }
