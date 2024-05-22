@@ -7,18 +7,12 @@ package gestionhotel;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
 
-/**
- *
- * @author USER
- */
 public class BuscarReserva extends javax.swing.JFrame {
     
     Reserva nuReserva=new Reserva();
     static ArrayList<Reserva> reservas=new ArrayList<>();
     static ArbolHabitaciones arbol=new ArbolHabitaciones();
-    /**
-     * Creates new form NewJFrame
-     */
+    
     public BuscarReserva(ArrayList<Reserva> reservas) {
         initComponents();
         this.reservas=reservas;

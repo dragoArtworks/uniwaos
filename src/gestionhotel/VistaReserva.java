@@ -61,9 +61,12 @@ public class VistaReserva extends javax.swing.JFrame {
         LbDatos8 = new javax.swing.JLabel();
         HabComboBox = new javax.swing.JComboBox<>();
         BtnVol = new javax.swing.JButton();
+        BtnInfo = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setPreferredSize(new java.awt.Dimension(674, 700));
+        setBackground(java.awt.SystemColor.window);
+        setFocusable(false);
+        setFocusableWindowState(false);
         setResizable(false);
 
         lbTitulo.setFont(new java.awt.Font("Segoe Print", 1, 24)); // NOI18N
@@ -153,6 +156,21 @@ public class VistaReserva extends javax.swing.JFrame {
             }
         });
 
+        BtnInfo.setFont(new java.awt.Font("Segoe Print", 1, 10)); // NOI18N
+        BtnInfo.setForeground(new java.awt.Color(0, 102, 102));
+        BtnInfo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/gestionhotel/imagenes/info4.png"))); // NOI18N
+        BtnInfo.setText("Habitaciones");
+        BtnInfo.setBorder(null);
+        BtnInfo.setBorderPainted(false);
+        BtnInfo.setContentAreaFilled(false);
+        BtnInfo.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        BtnInfo.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        BtnInfo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnInfoActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -164,7 +182,9 @@ public class VistaReserva extends javax.swing.JFrame {
                         .addComponent(LbDatos8)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(HabComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 143, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(BtnInfo)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 72, Short.MAX_VALUE)
                         .addComponent(BtnSiguiente)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(BtnVol)
@@ -251,13 +271,15 @@ public class VistaReserva extends javax.swing.JFrame {
                     .addComponent(NumPerCbox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(10, 10, 10)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(LbDatos8)
-                        .addComponent(HabComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(BtnSiguiente)
-                        .addComponent(BtnVol)))
-                .addContainerGap(20, Short.MAX_VALUE))
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(LbDatos8)
+                            .addComponent(HabComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(BtnSiguiente)
+                            .addComponent(BtnVol)))
+                    .addComponent(BtnInfo, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
@@ -361,6 +383,12 @@ public class VistaReserva extends javax.swing.JFrame {
         pagPrin.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_BtnVolActionPerformed
+
+    private void BtnInfoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnInfoActionPerformed
+        VistaHabiPer1 pagHabiPer1=new VistaHabiPer1(arbol, reservas);
+        pagHabiPer1.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_BtnInfoActionPerformed
     public static boolean CantCarac(String input) {
         // Verifica que la longitud esté entre 8 y 10 caracteres y que no contenga espacios
         return input.length() >= 8 && input.length() <= 10 && !input.contains(" ");
@@ -426,6 +454,7 @@ public class VistaReserva extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton BtnInfo;
     private javax.swing.JButton BtnSiguiente;
     private javax.swing.JButton BtnVol;
     private javax.swing.JComboBox<String> EstadiaCbox;

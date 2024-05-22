@@ -58,6 +58,12 @@ public class VistaInfoHotel extends javax.swing.JFrame {
         jTextArea1.setColumns(20);
         jTextArea1.setRows(5);
         jTextArea1.setText("En Uniwaos, nos esforzamos por ofrecer experiencias excepcionales en un entorno de\nlujo y comodidad. Desde nuestro servicio de primera clase hasta nuestro diseño\nsofisticado, cada detalle está cuidadosamente diseñado para hacer de tu estancia\nalgo memorable. Únete a nosotros y descubre por qué Uniwaos es más que un hotel: \nes una experiencia incomparable.");
+        jTextArea1.setAutoscrolls(false);
+        jTextArea1.setBorder(null);
+        jTextArea1.setCaretColor(new java.awt.Color(255, 255, 255));
+        jTextArea1.setFocusable(false);
+        jTextArea1.setOpaque(false);
+        jTextArea1.setVerifyInputWhenFocusTarget(false);
         jScrollPane1.setViewportView(jTextArea1);
 
         lbTitulo1.setFont(new java.awt.Font("Segoe Print", 1, 18)); // NOI18N
@@ -101,13 +107,15 @@ public class VistaInfoHotel extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addGap(6, 6, 6)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(BtnHabi)
-                                    .addComponent(lbTitulo1))
-                                .addGap(236, 236, 236)
-                                .addComponent(BtnVol))
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 474, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                            .addComponent(BtnHabi)
+                            .addComponent(lbTitulo1))
+                        .addGap(236, 236, 236)
+                        .addComponent(BtnVol)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 544, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(56, 56, 56))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -130,7 +138,7 @@ public class VistaInfoHotel extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addGap(18, 18, 18)
                         .addComponent(BtnHabi)
-                        .addContainerGap(64, Short.MAX_VALUE))
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(BtnVol)

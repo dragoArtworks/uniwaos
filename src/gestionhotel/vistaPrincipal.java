@@ -73,6 +73,8 @@ public class vistaPrincipal extends javax.swing.JFrame {
         BtnReservas.setIcon(new javax.swing.ImageIcon(getClass().getResource("/gestionhotel/imagenes/icons8-reserva-80.png"))); // NOI18N
         BtnReservas.setText("Reserva Ya!");
         BtnReservas.setBorder(null);
+        BtnReservas.setBorderPainted(false);
+        BtnReservas.setContentAreaFilled(false);
         BtnReservas.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         BtnReservas.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
         BtnReservas.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
@@ -84,6 +86,8 @@ public class vistaPrincipal extends javax.swing.JFrame {
 
         BtnInfo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/gestionhotel/imagenes/icons8-información-50.png"))); // NOI18N
         BtnInfo.setBorder(null);
+        BtnInfo.setBorderPainted(false);
+        BtnInfo.setContentAreaFilled(false);
         BtnInfo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 BtnInfoActionPerformed(evt);
@@ -92,12 +96,14 @@ public class vistaPrincipal extends javax.swing.JFrame {
 
         jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/gestionhotel/imagenes/WhatsApp Image 2024-05-14 at 9.21.00 AM (2).jpeg"))); // NOI18N
 
+        BtnEliminarReserva.setBackground(java.awt.SystemColor.window);
         BtnEliminarReserva.setFont(new java.awt.Font("Segoe Print", 1, 14)); // NOI18N
         BtnEliminarReserva.setForeground(new java.awt.Color(51, 51, 51));
         BtnEliminarReserva.setIcon(new javax.swing.ImageIcon(getClass().getResource("/gestionhotel/imagenes/icons8-eliminar-propiedad-100.png"))); // NOI18N
         BtnEliminarReserva.setText("Eliminar reserva");
         BtnEliminarReserva.setBorder(null);
         BtnEliminarReserva.setBorderPainted(false);
+        BtnEliminarReserva.setContentAreaFilled(false);
         BtnEliminarReserva.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         BtnEliminarReserva.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         BtnEliminarReserva.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
@@ -112,6 +118,7 @@ public class vistaPrincipal extends javax.swing.JFrame {
         BuscarReservas.setIcon(new javax.swing.ImageIcon(getClass().getResource("/gestionhotel/imagenes/icons8-búsqueda-de-propiedad-100.png"))); // NOI18N
         BuscarReservas.setText("Buscar Reservas");
         BuscarReservas.setBorderPainted(false);
+        BuscarReservas.setContentAreaFilled(false);
         BuscarReservas.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         BuscarReservas.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
         BuscarReservas.addActionListener(new java.awt.event.ActionListener() {
@@ -144,7 +151,7 @@ public class vistaPrincipal extends javax.swing.JFrame {
                                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(126, 126, 126)))
                         .addComponent(BtnInfo, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(33, Short.MAX_VALUE))
+                .addContainerGap(37, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGap(0, 0, Short.MAX_VALUE)
                 .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 194, javax.swing.GroupLayout.PREFERRED_SIZE)

@@ -8,17 +8,11 @@ import java.awt.event.FocusListener;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
 
-/**
- *
- * @author USER
- */
 public class EliminarReserva extends javax.swing.JFrame {
     Reserva nuReserva=new Reserva();
     static ArrayList<Reserva> reservas=new ArrayList<>();
     static ArbolHabitaciones arbol=new ArbolHabitaciones();
-    /**
-     * Creates new form NewJFrame
-     */
+    
     public EliminarReserva(ArrayList<Reserva> reservas) {
         initComponents();
         this.reservas=reservas;
